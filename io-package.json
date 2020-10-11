@@ -60,7 +60,7 @@
         "loglevel": "info",
         "mode": "schedule",
         "allowInit": true,
-        "schedule": "*/5 * * * *",
+        "schedule": "* * * * *",
         "type": "climate-control",
         "compact": true,
         "materialize": true,

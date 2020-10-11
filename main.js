@@ -28,13 +28,17 @@ class Defro extends utils.Adapter {
 
         const self = this;
 
+        // read config
         const defroUserID = this.config.userID;
         const defroToken = this.config.token;
         const defroUDID = this.config.udid;
 
+        // log config
         this.log.info('UserID: ' + defroUserID);
         this.log.info('Token: ' + defroToken);
+        this.log.info('Token: ' + defroUDID);
 
+        // create JSON data point
         await this.setObjectNotExistsAsync('JSON', {
             type: 'state',
             common: {
@@ -47,6 +51,7 @@ class Defro extends utils.Adapter {
             native: {},
         });
 
+        // get data from API
         await axios({
             method: 'get',
             baseURL: 'https://emodul.eu/api/v1/users/',
@@ -54,10 +59,21 @@ class Defro extends utils.Adapter {
             headers: { Authorization: 'Bearer ' + defroToken },
             responseType: 'json'
         }).then(function (response){
-            const content = response.data;
+            // log and store received data
+            self.log.info('received data (' + response.status + '): ' + JSON.stringify(response.data));
+            self.setState('JSON', {val: JSON.stringify(response.data)}, true);
 
-            self.log.debug('received data (' + response.status + '): ' + JSON.stringify(content));
-            self.setState('JSON', {val: JSON.stringify(content)}, true);
+            // get data from JSON and convert to datapoinst with values
+            for (let objIndex = 0; response.data.tiles.length; objIndex++) {
+                if (typeof response.data.tiles[i] !== 'undefined') {
+                    const bodyObj = response.data.tiles[objIndex];
+                    for (key in bodyObj) {
+                        if (user.hasOwnProperty(key)) {
+                            self.log.info(key + " = " + bodyObj[key]);
+                        }
+                    }
+                }
+            }    
         });
 
         this.killTimeout = setTimeout(this.stop.bind(this), 10000);
