@@ -54,7 +54,7 @@ class Defro extends utils.Adapter {
             headers: { Authorization: 'Bearer ' + defroToken },
             responseType: 'json'
         }).then(function (response){
-            self.setState('JSON', {val: response.data});
+            self.setState('JSON', response.data, true);
         });
 
         this.killTimeout = setTimeout(this.stop.bind(this), 10000);
