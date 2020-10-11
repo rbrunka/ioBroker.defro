@@ -51,9 +51,13 @@ class Defro extends utils.Adapter {
             method: 'get',
             baseURL: 'https://emodul.eu/api/v1/users/',
             url: defroUserID + '/modules/' + defroUDID,
-            headers: { Authorization: 'Bearer ' + defroToken }
+            headers: { Authorization: 'Bearer ' + defroToken },
+            responseType: 'json'
         }).then(function (response){
-            self.setState('JSON', {val: response.data}, true);
+            const content = response.data;
+
+            this.log.debug('received data (' + response.status + '): ' + JSON.stringify(content));
+            this.setState('JSON', {val: JSON.stringify(content)}, true);
         });
 
         this.killTimeout = setTimeout(this.stop.bind(this), 10000);
