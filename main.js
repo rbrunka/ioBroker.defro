@@ -66,15 +66,13 @@ class Defro extends utils.Adapter {
             // get data from JSON and convert to datapoinst with values
             var key;
             for (let objIndex = 0; response.data.tiles.length; objIndex++) {
-                if (typeof response.data.tiles[objIndex] !== 'undefined') {
-                    const bodyObj = response.data.tiles[objIndex];
-                    for (key in bodyObj) {
-                        if (bodyObj.hasOwnProperty(key)) {
-                            self.log.info(key + " = " + bodyObj[key]);
-                        }
+                const bodyObj = response.data.tiles[objIndex];
+                for (key in bodyObj) {
+                    if (bodyObj.hasOwnProperty(key)) {
+                        self.log.info(key + " = " + bodyObj[key]);
                     }
                 }
-            }    
+            }
         });
 
         this.killTimeout = setTimeout(this.stop.bind(this), 10000);
