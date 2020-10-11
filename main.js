@@ -65,7 +65,7 @@ class Defro extends utils.Adapter {
 
             // get data from JSON and convert to datapoinst with values
             for (let objIndex = 0; response.data.tiles.length; objIndex++) {
-                if (typeof response.data.tiles[i] !== 'undefined') {
+                if (typeof response.data.tiles[objIndex] !== 'undefined') {
                     const bodyObj = response.data.tiles[objIndex];
                     for (key in bodyObj) {
                         if (user.hasOwnProperty(key)) {
