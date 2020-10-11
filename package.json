@@ -1,22 +1,23 @@
 {
   "name": "iobroker.defro",
   "version": "0.0.1",
-  "description": "Template for adapter development",
-  "author": "Author <author@mail.com>",
-  "homepage": "https://github.com/Author/ioBroker.template",
+  "description": "Defro API adapter",
+  "author": "Roman Brunka <rbrunka@gmail.com>",
+  "homepage": "https://github.com/rbrunka/ioBroker.defro",
   "license": "MIT",
   "keywords": [
     "ioBroker",
-    "template",
+    "Defro",
     "Smart Home",
     "home automation"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Author/ioBroker.template.git"
+    "url": "https://github.com/rbrunka/ioBroker.defro.git"
   },
   "dependencies": {
-    "@iobroker/adapter-core": "^2.4.0"
+    "@iobroker/adapter-core": "^2.4.0",
+    "axios": "^0.20.0"
   },
   "devDependencies": {
     "@iobroker/testing": "^2.3.0",
@@ -48,10 +49,11 @@
     "lint": "eslint"
   },
   "bugs": {
-    "url": "https://github.com/Author/ioBroker.template/issues"
+    "url": "https://github.com/rbrunka/ioBroker.defro/issues"
   },
   "directories": {
     "lib": "lib",
     "test": "test"
-  }
+  },
+  "readmeFilename": "README.md"
 }

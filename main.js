@@ -13,7 +13,7 @@ class Defro extends utils.Adapter {
     constructor(options) {
         super({
             ...options,
-            name: 'windhager',
+            name: 'defro',
         });
 
         this.on('ready', this.onReady.bind(this));
