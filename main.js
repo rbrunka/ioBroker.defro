@@ -18,7 +18,7 @@ class Defro extends utils.Adapter {
 
         this.on('ready', this.onReady.bind(this));
         this.on('unload', this.onUnload.bind(this));
-        this.killTimeout = null;
+        //this.killTimeout = null;
     }
 
     /**
@@ -75,7 +75,8 @@ class Defro extends utils.Adapter {
             }
         });
 
-        this.killTimeout = setTimeout(this.stop.bind(this), 10000);
+        //this.killTimeout = setTimeout(this.stop.bind(this), 10000);
+        setTimeout(this.stop.bind(this), 10000);
     }
 
     /**
