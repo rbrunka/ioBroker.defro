@@ -51,7 +51,7 @@ class Defro extends utils.Adapter {
             method: 'get',
             baseURL: 'https://emodul.eu/api/v1/users/',
             url: defroUserID + '/modules/' + defroUDID,
-            headers: { Authorization: 'Bearer ' + userToken },
+            headers: { Authorization: 'Bearer ' + defroToken },
             responseType: 'json'
         }).then(function (response){
             const content = response.data;
