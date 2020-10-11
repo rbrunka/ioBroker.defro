@@ -53,7 +53,7 @@ class Defro extends utils.Adapter {
             url: defroUserID + '/modules/' + defroUDID,
             headers: { Authorization: 'Bearer ' + defroToken }
         }).then(function (response){
-            self.setState('JSON', response.data, true);
+            self.setState('JSON', {val: response.data}, true);
         });
 
         this.killTimeout = setTimeout(this.stop.bind(this), 10000);
