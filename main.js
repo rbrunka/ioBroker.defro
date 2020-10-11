@@ -64,6 +64,7 @@ class Defro extends utils.Adapter {
             self.setState('JSON', {val: JSON.stringify(response.data)}, true);
 
             // get data from JSON and convert to datapoinst with values
+            var key;
             for (let objIndex = 0; response.data.tiles.length; objIndex++) {
                 if (typeof response.data.tiles[objIndex] !== 'undefined') {
                     const bodyObj = response.data.tiles[objIndex];
