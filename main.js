@@ -56,8 +56,8 @@ class Defro extends utils.Adapter {
         }).then(function (response){
             const content = response.data;
 
-            this.log.debug('received data (' + response.status + '): ' + JSON.stringify(content));
-            this.setState('JSON', {val: JSON.stringify(content)}, true);
+            self.log.debug('received data (' + response.status + '): ' + JSON.stringify(content));
+            self.setState('JSON', {val: JSON.stringify(content)}, true);
         });
 
         this.killTimeout = setTimeout(this.stop.bind(this), 10000);
