@@ -62,20 +62,9 @@ class Defro extends utils.Adapter {
             // log and store received data
             self.log.info('received data (' + response.status + '): ' + JSON.stringify(response.data));
             self.setState('JSON', {val: JSON.stringify(response.data)}, true);
-
-            // get data from JSON and convert to datapoinst with values
-            var key;
-            for (let objIndex = 0; response.data.tiles.length; objIndex++) {
-                const bodyObj = response.data.tiles[objIndex];
-                for (key in bodyObj) {
-                    if (bodyObj.hasOwnProperty(key)) {
-                        self.log.info(key + " = " + bodyObj[key]);
-                    }
-                }
-            }
         });
 
-        this.killTimeout = setTimeout(this.stop.bind(this), 10000);
+        this.killTimeout = setTimeout(this.stop.bind(this), 5000);
     }
 
     /**
