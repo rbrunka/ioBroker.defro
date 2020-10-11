@@ -90,8 +90,11 @@
         ]
     },
     "native": {
-        "option1": true,
-        "option2": "42"
+        "defroUser": "User name",
+        "defroPass": "Password",
+        "defroUserID": "UserID",
+        "defroToken": "",
+        "defroUDID": ""
     },
     "objects": [],
     "instanceObjects": []

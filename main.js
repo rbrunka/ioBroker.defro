@@ -25,28 +25,38 @@ class Defro extends utils.Adapter {
      * Is called when databases are connected and adapter received configuration.
      */
     async onReady() {
+
         const self = this;
 
-        const defroLogin = this.config.login;
-        const defroPass = this.config.pass;
         const defroUserID = this.config.userID;
         const defroToken = this.config.token;
+        const defroUDID = this.config.udid;
 
         this.log.info('UserID: ' + defroUserID);
         this.log.info('Token: ' + defroToken);
 
-        await this.setObjectNotExistsAsync('testVariable', {
+        await this.setObjectNotExistsAsync('JSON', {
             type: 'state',
             common: {
-                name: 'testVariable',
-                type: 'boolean',
-                role: 'indicator',
+                name: 'JSON',
+                type: 'string',
+                role: 'text',
                 read: true,
                 write: true,
             },
             native: {},
         });
 
+        await axios({
+            method: 'get',
+            baseURL: 'https://emodul.eu/api/v1/users/',
+            url: defroUserID + '/modules/' + defroUDID,
+            headers: { Authorization: 'Bearer ' + userToken },
+            responseType: 'json'
+        }).then(function (response){
+            const content = response.data;
+            self.setState('JSON', {val: content});
+        });
 
         this.killTimeout = setTimeout(this.stop.bind(this), 10000);
     }
@@ -68,57 +78,6 @@ class Defro extends utils.Adapter {
             callback();
         }
     }
-
-    // If you need to react to object changes, uncomment the following block and the corresponding line in the constructor.
-    // You also need to subscribe to the objects with `this.subscribeObjects`, similar to `this.subscribeStates`.
-    // /**
-    //  * Is called if a subscribed object changes
-    //  * @param {string} id
-    //  * @param {ioBroker.Object | null | undefined} obj
-    //  */
-    // onObjectChange(id, obj) {
-    //     if (obj) {
-    //         // The object was changed
-    //         this.log.info(`object ${id} changed: ${JSON.stringify(obj)}`);
-    //     } else {
-    //         // The object was deleted
-    //         this.log.info(`object ${id} deleted`);
-    //     }
-    // }
-
-    /**
-     * Is called if a subscribed state changes
-     * @param {string} id
-     * @param {ioBroker.State | null | undefined} state
-     */
-    onStateChange(id, state) {
-        if (state) {
-            // The state was changed
-            this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
-        } else {
-            // The state was deleted
-            this.log.info(`state ${id} deleted`);
-        }
-    }
-
-    // If you need to accept messages in your adapter, uncomment the following block and the corresponding line in the constructor.
-    // /**
-    //  * Some message was sent to this instance over message box. Used by email, pushover, text2speech, ...
-    //  * Using this method requires "common.message" property to be set to true in io-package.json
-    //  * @param {ioBroker.Message} obj
-    //  */
-    // onMessage(obj) {
-    //     if (typeof obj === 'object' && obj.message) {
-    //         if (obj.command === 'send') {
-    //             // e.g. send email or pushover or whatever
-    //             this.log.info('send command');
-
-    //             // Send response in callback if required
-    //             if (obj.callback) this.sendTo(obj.from, obj.command, 'Message received', obj.callback);
-    //         }
-    //     }
-    // }
-
 }
 
 if (module.parent) {
