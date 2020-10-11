@@ -1,11 +1,8 @@
 {
-  "name": "iobroker.template",
+  "name": "iobroker.defro",
   "version": "0.0.1",
   "description": "Template for adapter development",
-  "author": {
-    "name": "Author",
-    "email": "author@mail.com"
-  },
+  "author": "Author <author@mail.com>",
   "homepage": "https://github.com/Author/ioBroker.template",
   "license": "MIT",
   "keywords": [
@@ -16,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/Author/ioBroker.template"
+    "url": "git+https://github.com/Author/ioBroker.template.git"
   },
   "dependencies": {
     "@iobroker/adapter-core": "^2.4.0"
@@ -53,5 +50,8 @@
   "bugs": {
     "url": "https://github.com/Author/ioBroker.template/issues"
   },
-  "readmeFilename": "README.md"
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  }
 }
