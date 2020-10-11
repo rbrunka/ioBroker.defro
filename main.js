@@ -69,7 +69,7 @@ class Defro extends utils.Adapter {
                 if (typeof response.data.tiles[objIndex] !== 'undefined') {
                     const bodyObj = response.data.tiles[objIndex];
                     for (key in bodyObj) {
-                        if (user.hasOwnProperty(key)) {
+                        if (bodyObj.hasOwnProperty(key)) {
                             self.log.info(key + " = " + bodyObj[key]);
                         }
                     }
