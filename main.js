@@ -18,7 +18,7 @@ class Defro extends utils.Adapter {
 
         this.on('ready', this.onReady.bind(this));
         this.on('unload', this.onUnload.bind(this));
-        //this.killTimeout = null;
+        this.killTimeout = null;
     }
 
     /**
@@ -75,8 +75,7 @@ class Defro extends utils.Adapter {
             }
         });
 
-        //this.killTimeout = setTimeout(this.stop.bind(this), 10000);
-        setTimeout(this.stop.bind(this), 10000);
+        this.killTimeout = setTimeout(this.stop.bind(this), 10000);
     }
 
     /**
@@ -85,12 +84,11 @@ class Defro extends utils.Adapter {
      */
     onUnload(callback) {
         try {
-            // Here you must clear all timeouts or intervals that may still be active
-            // clearTimeout(timeout1);
-            // clearTimeout(timeout2);
-            // ...
-            // clearInterval(interval1);
-
+            if (this.killTimeout) {
+                this.log.debug('clearing kill timeout');
+                clearTimeout(this.killTimeout);
+            }
+            this.log.debug('cleaned everything up...');
             callback();
         } catch (e) {
             callback();
