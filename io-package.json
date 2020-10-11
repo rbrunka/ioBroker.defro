@@ -1,6 +1,6 @@
 {
     "common": {
-        "name": "template",
+        "name": "defro",
         "version": "0.0.1",
         "news": {
             "0.0.1": {
@@ -16,37 +16,37 @@
                 "zh-cn": "首次出版"
             }
         },
-        "title": "Template (JavaScript)",
+        "title": "Defro API Adapter",
         "titleLang": {
-            "en": "Template (JavaScript)",
-            "de": "Vorlage (JavaScript)",
-            "ru": "Шаблон (JavaScript)",
-            "pt": "Modelo (JavaScript)",
-            "nl": "Sjabloon (JavaScript)",
-            "fr": "Modèle (JavaScript)",
-            "it": "Modello (JavaScript)",
-            "es": "Plantilla (JavaScript)",
-            "pl": "Szablon (JavaScript)",
-            "zh-cn": "范本（JavaScript）"
+            "en": "Defro API Adapter",
+            "de": "Defro API Adapter",
+            "ru": "Defro API Adapter",
+            "pt": "Defro API Adapter",
+            "nl": "Defro API Adapter",
+            "fr": "Defro API Adapter",
+            "it": "Defro API Adapter",
+            "es": "Defro API Adapter",
+            "pl": "Defro API Adapter",
+            "zh-cn": "Defro API Adapter"
         },
         "desc": {
-            "en": "Template for adapter development",
-            "de": "Vorlage für die Adapterentwicklung",
-            "ru": "Шаблон для разработки адаптера",
-            "pt": "Modelo para desenvolvimento de adaptador",
-            "nl": "Sjabloon voor adapterontwikkeling",
-            "fr": "Modèle de développement d'adaptateur",
-            "it": "Modello per lo sviluppo dell'adattatore",
-            "es": "Plantilla para el desarrollo de adaptadores",
-            "pl": "Szablon do tworzenia adapterów",
-            "zh-cn": "适配器开发的模板"
+            "en": "Defro API Adapter",
+            "de": "Defro API Adapter",
+            "ru": "Defro API Adapter",
+            "pt": "Defro API Adapter",
+            "nl": "Defro API Adapter",
+            "fr": "Defro API Adapter",
+            "it": "Defro API Adapter",
+            "es": "Defro API Adapter",
+            "pl": "Defro API Adapter",
+            "zh-cn": "Defro API Adapter"
         },
         "authors": [
-            "Author <author@mail.com>"
+            "Roman Brunka <rbrunka@gmail.com>"
         ],
         "keywords": [
             "ioBroker",
-            "template",
+            "Defro",
             "Smart Home",
             "home automation"
         ],
@@ -55,27 +55,29 @@
         "main": "main.js",
         "icon": "template.png",
         "enabled": true,
-        "extIcon": "https://raw.githubusercontent.com/Author/ioBroker.template/master/admin/template.png",
-        "readme": "https://github.com/Author/ioBroker.template/blob/master/README.md",
+        "extIcon": "https://raw.githubusercontent.com/rbrunka/ioBroker.defro/master/admin/defro.png",
+        "readme": "https://github.com/rbrunka/ioBroker.defro/blob/master/README.md",
         "loglevel": "info",
-        "mode": "daemon",
-        "type": "general",
+        "mode": "schedule",
+        "allowInit": true,
+        "schedule": "*/5 * * * *",
+        "type": "climate-control",
         "compact": true,
         "materialize": true,
         "materializeTab": true,
         "adminTab": {
             "singleton": true,
             "name": {
-                "en": "Template (JavaScript)",
-                "de": "Vorlage (JavaScript)",
-                "ru": "Шаблон (JavaScript)",
-                "pt": "Modelo (JavaScript)",
-                "nl": "Sjabloon (JavaScript)",
-                "fr": "Modèle (JavaScript)",
-                "it": "Modello (JavaScript)",
-                "es": "Plantilla (JavaScript)",
-                "pl": "Szablon (JavaScript)",
-                "zh-cn": "范本（JavaScript）"
+                "en": "Defro",
+                "de": "Defro",
+                "ru": "Defro",
+                "pt": "Defro",
+                "nl": "Defro",
+                "fr": "Defro",
+                "it": "Defro",
+                "es": "Defro",
+                "pl": "Defro",
+                "zh-cn": "Defro"
             },
             "link": "",
             "fa-icon": "info"
