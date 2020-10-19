@@ -83,7 +83,7 @@ class Defro extends utils.Adapter {
                                     }
                                 }
                             } else {
-                                self.setObjectNotExisitAsync('data.'+ objectID +'.' + key, {
+                                self.setObjectNotExistsAsync('data.'+ objectID +'.' + key, {
                                     type: 'state',
                                     common: {
                                         name: key,
