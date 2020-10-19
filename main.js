@@ -61,10 +61,52 @@ class Defro extends utils.Adapter {
         }).then(function (response){
             // log and store received data
             self.log.info('received data (' + response.status + '): ' + JSON.stringify(response.data));
-            self.setState('JSON', {val: JSON.stringify(response.data)}, true);
+            if (response.status !== 200) {
+                self.log.error('Error');
+            }
+            else
+            {
+                self.setState('JSON', {val: JSON.stringify(response.data)}, true);
+                // convert JSON to datapoints
+                const jsonResponse = response.data.tiles;
+
+                var key, subkey, objectID;
+                for (let i=0; i<jsonResponse.length; i++) {
+                    objectID = jsonResponse[i].id;
+                    for (key in jsonResponse[i]) {
+                        if (jsonResponse[i].hasOwnProperty(key)) {
+                            if (key == 'params')
+                            {
+                                for (subkey in jsonResponse[i][key]) {
+                                    if (jsonResponse[i][key].hasOwnProperty(subkey)) {
+                                        console.log('subkey: ' + subkey + ": " + jsonResponse[i][key][subkey]);
+                                    }
+                                }
+                            } else {
+                                self.setObjectNotExisitAsync('data.'+ objectID +'.' + key, {
+                                    type: 'state',
+                                    common: {
+                                        name: key,
+                                        type: 'string',
+                                        role: 'text',
+                                        read: true,
+                                        write: true,
+                                    },
+                                    native: {}, 
+                                });
+                                self.setState('data.'+ objectID +'.' + key, {val: jsonResponse[i][key], ack: true});
+                            }
+                        }
+                    }
+        
+        
+                }
+
+
+            };
         });
 
-        this.killTimeout = setTimeout(this.stop.bind(this), 5000);
+        this.killTimeout = setTimeout(this.stop.bind(this), 10000);
     }
 
     /**
