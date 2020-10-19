@@ -21,7 +21,7 @@
 ## Changelog
 
 * ### 0.0.1
-* * (rbrunka) iobroker template
+* * (rbrunka) initial release - this adapter reads raw data from Defro API
 *
 * ## License
 * MIT License
