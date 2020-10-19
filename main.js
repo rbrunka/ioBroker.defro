@@ -79,7 +79,18 @@ class Defro extends utils.Adapter {
                             {
                                 for (subkey in jsonResponse[i][key]) {
                                     if (jsonResponse[i][key].hasOwnProperty(subkey)) {
-                                        console.log('subkey: ' + subkey + ": " + jsonResponse[i][key][subkey]);
+                                        self.setObjectNotExistsAsync('data.' + objectID + '.' + key + '.' + subkey, {
+                                            type: 'state',
+                                            common: {
+                                                name: key,
+                                                type: 'string',
+                                                role: 'text',
+                                                read: true,
+                                                write: true,
+                                            },
+                                            native: {}, 
+                                        });
+                                        self.setState('data.' + objectID + '.' + key + '.' + subkey, {val: jsonResponse[i][key][subkey], ack: true});
                                     }
                                 }
                             } else {
@@ -94,7 +105,7 @@ class Defro extends utils.Adapter {
                                     },
                                     native: {}, 
                                 });
-                                self.setState('data.'+ objectID +'.' + key, {val: jsonResponse[i][key], ack: true});
+                                self.setState('data.' + objectID + '.' + key, {val: jsonResponse[i][key], ack: true});
                             }
                         }
                     }
